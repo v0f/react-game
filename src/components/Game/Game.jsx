@@ -17,13 +17,15 @@ function Game() {
 
   const genShipsButtonClick = () => setBoard1State(generateShips());
   const board2Click = (squareIndex) => {
-    const squareStatus = board2State[squareIndex] === squareType.ship
-      ? squareType.shot
-      : squareType.miss;
+    const prevStatus = board2State[squareIndex];
+    if (prevStatus !== squareType.ship && prevStatus !== squareType.empty) {
+      return;
+    }
+    const newStatus = prevStatus === squareType.ship ? squareType.shot : squareType.miss;
     const newBoard2State = board2State.slice();
-    newBoard2State[squareIndex] = squareStatus;
+    newBoard2State[squareIndex] = newStatus;
     setBoard2State(newBoard2State);
-    makeSound(squareType[squareStatus]);
+    makeSound(squareType[newStatus]);
   };
 
   return (
