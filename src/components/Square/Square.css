@@ -3,7 +3,7 @@
 }
 
 .player1 .Square.ship {
-  background: lightgreen;
+  background: linear-gradient(45deg, royalblue, skyblue 100px);
 }
 
 /* .player1 .Square.shipMargin {
