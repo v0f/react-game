@@ -1,5 +1,11 @@
 .Square {
   border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  user-select: none;
 }
 
 .player1 .Square.ship {
@@ -12,8 +18,10 @@
 
 .player2 .Square.shot {
   background: linear-gradient(45deg, red, transparent 100px);
+  color: darkred;
 }
 
 .player2 .Square.miss {
   background: #e5eff9;
+  color: #000;
 }
