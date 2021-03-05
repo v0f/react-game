@@ -1,0 +1,13 @@
+.BoardInfo {
+  padding: 0 10px;
+  font-size: 25px;
+  font-family: sans-serif;
+}
+
+.BoardInfo.player1 {
+  text-align: left;
+}
+
+.BoardInfo.player2 {
+  text-align: right;
+}

@@ -60,7 +60,16 @@ const generateShips = () => {
   return board.map((status) => (status === squareType.shipMargin ? squareType.empty : status));
 };
 
+const boardStat = (board) => {
+  const shots = board.filter(
+    (square) => ![squareType.ship, squareType.empty].includes(square),
+  ).length;
+  const hits = board.filter((square) => square === squareType.shot).length;
+  return { shots, hits };
+};
+
 export {
   getEmptyBoard,
   generateShips,
+  boardStat,
 };
