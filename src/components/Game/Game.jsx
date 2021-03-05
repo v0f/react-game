@@ -6,17 +6,20 @@ import { getEmptyBoard, generateShips } from '../../logic';
 import './Game.css';
 
 function Game() {
-  const [state, setState] = useState(getEmptyBoard);
+  const [board1State, setBoard1State] = useState(getEmptyBoard);
+  const [board2State, setBoard2State] = useState(getEmptyBoard);
 
-  useEffect(() => setState(generateShips()), []);
+  // ships auto placement
+  useEffect(() => setBoard1State(generateShips()), []);
+  useEffect(() => setBoard2State(generateShips()), []);
 
-  const handleClick = () => setState(generateShips());
+  const handleClick = () => setBoard1State(generateShips());
 
   return (
     <div className="Game">
       <div className="boards">
-        <Board className="player1" boardState={state} />
-        {/* <Board className="player2" /> */}
+        <Board className="player1" boardState={board1State} />
+        <Board className="player2" boardState={board2State} />
       </div>
       <Button
         className="genShipsButton"
@@ -25,7 +28,7 @@ function Game() {
         endIcon={<AutorenewIcon />}
         onClick={handleClick}
       >
-        расставить корабли
+        autoplace ships
       </Button>
     </div>
   );
