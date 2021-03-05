@@ -3,13 +3,15 @@ h1 {
 }
 
 header {
-  height: 100px;
   letter-spacing: 10px;
   font-family: sans-serif;
   font-size: x-large;
   text-shadow: 2px 2px 2px deepskyblue;
   color: #333;
   font-style: oblique;
-  text-transform: capitalize;
-  margin-top: auto;
+  text-transform: uppercase;
+  flex-basis: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
