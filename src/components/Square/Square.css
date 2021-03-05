@@ -9,3 +9,11 @@
 /* .player1 .Square.shipMargin {
   background: lightgoldenrodyellow;
 } */
+
+.player2 .Square.shot {
+  background: linear-gradient(45deg, red, transparent 100px);
+}
+
+.player2 .Square.miss {
+  background: #e5eff9;
+}
