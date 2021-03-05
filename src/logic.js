@@ -57,7 +57,7 @@ const generateShips = () => {
   } catch {
     return generateShips();
   }
-  return board;
+  return board.map((status) => (status === squareType.shipMargin ? squareType.empty : status));
 };
 
 export {
