@@ -1,0 +1,11 @@
+.Square {
+  border: 1px solid #ccc;
+}
+
+.player1 .Square.ship {
+  background: lightgreen;
+}
+
+/* .player1 .Square.shipMargin {
+  background: lightgoldenrodyellow;
+} */
