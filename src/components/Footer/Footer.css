@@ -1,0 +1,13 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw;
+  font-size: 1.4rem;
+  padding: 30px 0;
+}
+
+footer img {
+  height: 30px;
+  width: auto;
+}

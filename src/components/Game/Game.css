@@ -1,5 +1,7 @@
 .Game {
   margin: 0 auto;
+  width: fit-content;
+  margin-bottom: auto;
 }
 
 .Game .boards {
