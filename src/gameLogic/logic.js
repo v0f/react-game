@@ -1,4 +1,4 @@
-import { BOARD_SIZE, squareType } from './constants';
+import { BOARD_SIZE, squareType } from './gameLogic/constants';
 
 const getEmptyBoard = () => Array(BOARD_SIZE ** 2).fill(0);
 

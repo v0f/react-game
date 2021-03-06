@@ -1,6 +1,6 @@
-import music from './assets/music.mp3';
-import shot from './assets/shot.mp3';
-import miss from './assets/miss.mp3';
+import music from '../assets/music.mp3';
+import shot from '../assets/shot.mp3';
+import miss from '../assets/miss.mp3';
 
 const gameMusic = new Audio(music);
 gameMusic.loop = true;
