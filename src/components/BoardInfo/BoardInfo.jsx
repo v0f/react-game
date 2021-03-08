@@ -7,11 +7,11 @@ function BoardInfo({ className, playerName, playerStat }) {
       <div className="playerName">{playerName}</div>
       <div className="playerScore">
         <span>score: </span>
-        {playerStat.hits}
+        {playerStat?.hits || 0}
       </div>
       <div className="playerMoves">
         <span>moves: </span>
-        {playerStat.shots}
+        {playerStat?.shots || 0}
       </div>
     </div>
   );
