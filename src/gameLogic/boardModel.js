@@ -42,7 +42,12 @@ class BoardModel {
 
   generateShips = () => {
     const board = Array(this.size ** 2).fill(0);
-    const shipsToMake = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
+    const shipsForBoardSize = [10, 7, 5].indexOf(this.size);
+    const shipsToMake = [
+      [4, 3, 3, 2, 2, 2, 1, 1, 1, 1],
+      [3, 2, 2, 1, 1, 1],
+      [2, 1, 1, 1],
+    ][shipsForBoardSize];
     try {
       shipsToMake.forEach((size) => {
         const ship = this.makeRandomShip(size, board);
