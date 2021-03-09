@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import Board from '../Board/Board';
@@ -86,9 +87,15 @@ function Game() {
       <Button {...buttonsStyle} endIcon={<AutorenewIcon />} onClick={autoplayButtonClick}>
         autoplay
       </Button>
-      <Paper style={{ width: '350px', marginTop: '50px' }} elevation={0}>
-        <BoardSizeSlider onChange={handleBoardSizeChange} />
-        <BotSpeedSlider onChange={handleBotSpeedChange} />
+      <Paper style={{ marginTop: '50px', padding: '25px' }} elevation={0}>
+        <Grid container direction="column" spacing={3}>
+          <Grid item xs>
+            <BoardSizeSlider onChange={handleBoardSizeChange} />
+          </Grid>
+          <Grid item xs>
+            <BotSpeedSlider onChange={handleBotSpeedChange} />
+          </Grid>
+        </Grid>
       </Paper>
     </div>
   );

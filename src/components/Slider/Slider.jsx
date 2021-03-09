@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 
+const useStyles = makeStyles({
+  slider: {
+    width: 150,
+  },
+});
+
 export default function DiscreteSlider({ label, marks, onChange }) {
+  const classes = useStyles();
   const defaultValue = marks.find((m) => m.default).value;
   const [value, setValue] = useState(defaultValue);
   const handleChange = (e, newValue) => {
@@ -12,8 +20,8 @@ export default function DiscreteSlider({ label, marks, onChange }) {
     }
   };
   return (
-    <div className="slider" style={{ width: '200px', padding: '10px 30px' }}>
-      <Typography gutterBottom>{label}</Typography>
+    <div className={classes.slider}>
+      <Typography>{label}</Typography>
       <Slider
         value={value}
         step={null}
