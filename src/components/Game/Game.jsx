@@ -7,8 +7,10 @@ import Board from '../Board/Board';
 import BoardInfo from '../BoardInfo/BoardInfo';
 import BoardSizeSlider from '../Slider/BoardSizeSlider';
 import BotSpeedSlider from '../Slider/BotSpeedSlider';
+import FirstMoveChoise from '../FirstMoveChoise/FirstMoveChoise';
 import GameModel from '../../gameLogic/gameModel';
 import BoardModel from '../../gameLogic/boardModel';
+import { PLAYERS } from '../../gameLogic/constants';
 import './Game.css';
 
 function Game() {
@@ -16,12 +18,13 @@ function Game() {
   const [board2State, setBoard2State] = useState([]);
   const [boardSize, setBoardSize] = useState(10);
   const [botsTimeout, setBotsTimeout] = useState(1000);
+  const [firstMove, setFirstMove] = useState(PLAYERS.player1);
 
   const game = useRef({});
 
   const startNewGame = (autoplay = false) => {
     game.current.stopGame?.();
-    game.current = new GameModel(boardSize, botsTimeout, autoplay);
+    game.current = new GameModel(boardSize, botsTimeout, firstMove, autoplay);
     setBoard1State(game.current.board1.squares);
     setBoard2State(game.current.board2.squares);
     game.current.updateBoard2State = setBoard2State;
@@ -31,39 +34,32 @@ function Game() {
   useEffect(() => {
     game.current.updateBoard1State = setBoard1State;
     game.current.updateBoard2State = setBoard2State;
-  }, [setBoard1State, setBoard2State]);
+  }, [board1State, board2State]);
 
-  useEffect(() => {
-    startNewGame();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(startNewGame, []); // on mount
 
-  useEffect(() => {
-    startNewGame();
+  // start new game when board size changed
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [boardSize]); // start new game when board size changed
+  useEffect(startNewGame, [boardSize]);
 
-  const newGameButtonClick = () => {
-    startNewGame();
-  };
+  const newGameButtonClick = () => startNewGame();
 
-  const autoplayButtonClick = () => {
-    startNewGame(true);
-  };
+  const autoplayButtonClick = () => startNewGame(true);
 
   const board2Click = (squareIndex) => {
-    if (game.current.nextMove !== 'player' || game.current.autoplay) return;
+    if (game.current.nextMove !== PLAYERS.player1 || game.current.autoplay) return;
     game.current.playerMakeMove(squareIndex);
   };
 
-  const handleBoardSizeChange = (event, value) => {
-    setBoardSize(value);
-  };
+  const handleBoardSizeChange = (event, value) => setBoardSize(value);
 
   const handleBotSpeedChange = (event, value) => {
     game.current.botsTimeout = value;
     setBotsTimeout(value);
   };
+
+  const handleFirstMoveChange = (newValue) => setFirstMove(newValue);
 
   const player1Stat = BoardModel.boardStat(board2State);
   const player2Stat = BoardModel.boardStat(board1State);
@@ -94,6 +90,9 @@ function Game() {
           </Grid>
           <Grid item xs>
             <BotSpeedSlider onChange={handleBotSpeedChange} />
+          </Grid>
+          <Grid item xs>
+            <FirstMoveChoise onChange={handleFirstMoveChange} />
           </Grid>
         </Grid>
       </Paper>

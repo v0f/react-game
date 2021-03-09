@@ -1,17 +1,22 @@
-import { squareType } from './constants';
+import { squareType, PLAYERS } from './constants';
 import BoardModel from './boardModel';
 import { makeSound } from '../utils/sounds';
 
 class GameModel {
-  constructor(boardSize, botsTimeout, autoplay = false) {
+  constructor(boardSize, botsTimeout, firstMove = PLAYERS.player1, autoplay = false) {
     this.board1 = new BoardModel(boardSize);
     this.board2 = new BoardModel(boardSize);
-    this.nextMove = 'player';
     this.autoplay = autoplay;
     this.state = 'on';
     this.botsTimeout = botsTimeout;
 
-    if (autoplay) this.playerBotMakeMove();
+    if (firstMove === PLAYERS.player1) {
+      this.nextMove = PLAYERS.player1;
+      if (autoplay) this.playerBotMakeMove();
+    } else {
+      this.nextMove = PLAYERS.player2;
+      this.botMakeMove();
+    }
   }
 
   stopGame = () => {
@@ -38,7 +43,7 @@ class GameModel {
     if (this.board2.allShipsDestroyed()) {
       this.state = 'win';
     } else {
-      this.nextMove = 'player2';
+      this.nextMove = PLAYERS.player2;
       this.botMakeMove();
     }
   }
@@ -57,7 +62,7 @@ class GameModel {
       if (this.board1.allShipsDestroyed()) {
         this.state = 'win';
       } else {
-        this.nextMove = 'player';
+        this.nextMove = PLAYERS.player1;
         if (this.autoplay) this.playerBotMakeMove();
       }
     };
