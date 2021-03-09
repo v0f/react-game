@@ -58,8 +58,8 @@ function Game() {
     if (size !== boardSize) setBoardSize(size);
   };
 
-  const player1Stat = BoardModel.boardStat(board1State);
-  const player2Stat = BoardModel.boardStat(board2State);
+  const player1Stat = BoardModel.boardStat(board2State);
+  const player2Stat = BoardModel.boardStat(board1State);
 
   const buttonsStyle = { className: 'newGameButton', variant: 'contained', size: 'medium' };
   return (
@@ -80,7 +80,7 @@ function Game() {
       <Button {...buttonsStyle} endIcon={<AutorenewIcon />} onClick={autoplayButtonClick}>
         autoplay
       </Button>
-      <Paper style={{ width: '350px' }} elevation={0}>
+      <Paper style={{ width: '350px', marginTop: '50px' }} elevation={0}>
         <Slider onChange={handleBoardSizeChange} />
       </Paper>
     </div>
