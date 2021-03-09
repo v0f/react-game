@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from './Slider';
 
-const marks = [
+const SLIDER_MARKS = [
   {
     value: 0,
     realValue: 5,
@@ -22,6 +22,6 @@ const marks = [
 
 export default function BoardSizeSlider({ onChange }) {
   return (
-    <Slider label="board size" onChange={onChange} marks={marks} />
+    <Slider label="board size" onChange={onChange} marks={SLIDER_MARKS} />
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from './Slider';
 
-const marks = [
+const SLIDER_MARKS = [
   {
     value: 0,
     realValue: 2000,
@@ -22,6 +22,6 @@ const marks = [
 
 export default function BotSpeedSlider({ onChange }) {
   return (
-    <Slider label="bot speed" onChange={onChange} marks={marks} />
+    <Slider label="bot speed" onChange={onChange} marks={SLIDER_MARKS} />
   );
 }
