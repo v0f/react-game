@@ -1,38 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-const marks = [
-  {
-    value: 0,
-    label: '5 x 5',
-  },
-  {
-    value: 1,
-    label: '7 x 7',
-  },
-  {
-    value: 2,
-    label: '10 x 10',
-  },
-];
-
-export default function DiscreteSlider({ onChange }) {
+export default function DiscreteSlider({ marks, onChange }) {
+  const defaultValue = marks.find((m) => m.default).value;
+  const [value, setValue] = useState(defaultValue);
+  const handleChange = (e, newValue) => {
+    if (newValue !== value) {
+      setValue(newValue);
+      onChange(e, marks[newValue].realValue);
+    }
+  };
   return (
     <div className="slider" style={{ width: '200px', padding: '10px 30px' }}>
-      <Typography id="discrete-slider-restrict" gutterBottom>
-        board size
-      </Typography>
+      <Typography gutterBottom>board size</Typography>
       <Slider
-        defaultValue={3}
-        aria-labelledby="discrete-slider-restrict"
+        value={value}
         step={null}
         valueLabelDisplay="off"
-        min={0}
-        max={2}
+        min={marks[0].value}
+        max={marks[marks.length - 1].value}
         marks={marks}
         track={false}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </div>
   );

@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import Board from '../Board/Board';
 import BoardInfo from '../BoardInfo/BoardInfo';
-import Slider from '../Slider/Slider';
+import BoardSizeSlider from '../Slider/BoardSizeSlider';
 import GameModel from '../../gameLogic/gameModel';
 import BoardModel from '../../gameLogic/boardModel';
 import './Game.css';
@@ -54,8 +54,7 @@ function Game() {
   };
 
   const handleBoardSizeChange = (event, value) => {
-    const size = [5, 7, 10][value]; // map slider values to boardSize
-    if (size !== boardSize) setBoardSize(size);
+    setBoardSize(value);
   };
 
   const player1Stat = BoardModel.boardStat(board2State);
@@ -81,7 +80,7 @@ function Game() {
         autoplay
       </Button>
       <Paper style={{ width: '350px', marginTop: '50px' }} elevation={0}>
-        <Slider onChange={handleBoardSizeChange} />
+        <BoardSizeSlider onChange={handleBoardSizeChange} />
       </Paper>
     </div>
   );
