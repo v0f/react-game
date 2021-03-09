@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 
 export default function DiscreteSlider({ label, marks, onChange }) {
   const classes = useStyles();
-  const defaultValue = marks.find((m) => m.default).value;
+  const { value: defaultValue } = marks.find((m) => m.default) || marks[0];
   const [value, setValue] = useState(defaultValue);
   const handleChange = (e, newValue) => {
     if (newValue !== value) {
