@@ -22,6 +22,6 @@ const marks = [
 
 export default function BoardSizeSlider({ onChange }) {
   return (
-    <Slider onChange={onChange} marks={marks} />
+    <Slider label="board size" onChange={onChange} marks={marks} />
   );
 }

@@ -3,13 +3,13 @@ import BoardModel from './boardModel';
 import { makeSound } from '../utils/sounds';
 
 class GameModel {
-  constructor(boardSize, autoplay = false) {
+  constructor(boardSize, botsTimeout, autoplay = false) {
     this.board1 = new BoardModel(boardSize);
     this.board2 = new BoardModel(boardSize);
     this.nextMove = 'player';
     this.autoplay = autoplay;
     this.state = 'on';
-    this.botsTimeout = 1000;
+    this.botsTimeout = botsTimeout;
 
     if (autoplay) this.playerBotMakeMove();
   }

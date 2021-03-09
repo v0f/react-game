@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-export default function DiscreteSlider({ marks, onChange }) {
+export default function DiscreteSlider({ label, marks, onChange }) {
   const defaultValue = marks.find((m) => m.default).value;
   const [value, setValue] = useState(defaultValue);
   const handleChange = (e, newValue) => {
@@ -13,7 +13,7 @@ export default function DiscreteSlider({ marks, onChange }) {
   };
   return (
     <div className="slider" style={{ width: '200px', padding: '10px 30px' }}>
-      <Typography gutterBottom>board size</Typography>
+      <Typography gutterBottom>{label}</Typography>
       <Slider
         value={value}
         step={null}

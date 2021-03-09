@@ -5,6 +5,7 @@ import AutorenewIcon from '@material-ui/icons/Autorenew';
 import Board from '../Board/Board';
 import BoardInfo from '../BoardInfo/BoardInfo';
 import BoardSizeSlider from '../Slider/BoardSizeSlider';
+import BotSpeedSlider from '../Slider/BotSpeedSlider';
 import GameModel from '../../gameLogic/gameModel';
 import BoardModel from '../../gameLogic/boardModel';
 import './Game.css';
@@ -13,12 +14,13 @@ function Game() {
   const [board1State, setBoard1State] = useState([]);
   const [board2State, setBoard2State] = useState([]);
   const [boardSize, setBoardSize] = useState(10);
+  const [botsTimeout, setBotsTimeout] = useState(1000);
 
   const game = useRef({});
 
   const startNewGame = (autoplay = false) => {
     game.current.stopGame?.();
-    game.current = new GameModel(boardSize, autoplay);
+    game.current = new GameModel(boardSize, botsTimeout, autoplay);
     setBoard1State(game.current.board1.squares);
     setBoard2State(game.current.board2.squares);
     game.current.updateBoard2State = setBoard2State;
@@ -57,6 +59,11 @@ function Game() {
     setBoardSize(value);
   };
 
+  const handleBotSpeedChange = (event, value) => {
+    game.current.botsTimeout = value;
+    setBotsTimeout(value);
+  };
+
   const player1Stat = BoardModel.boardStat(board2State);
   const player2Stat = BoardModel.boardStat(board1State);
 
@@ -81,6 +88,7 @@ function Game() {
       </Button>
       <Paper style={{ width: '350px', marginTop: '50px' }} elevation={0}>
         <BoardSizeSlider onChange={handleBoardSizeChange} />
+        <BotSpeedSlider onChange={handleBotSpeedChange} />
       </Paper>
     </div>
   );
