@@ -74,7 +74,7 @@ function Game() {
       <div className="boards">
         <div className="boardContainer">
           <BoardInfo className="player1" playerName="You" playerStat={player1Stat} />
-          <Board className="player1" boardState={board1State} boardSize={boardSize} />
+          <Board className="player1" boardState={board1State} boardSize={boardSize} player />
         </div>
         <div className="boardContainer">
           <BoardInfo className="player2" playerName="Bot" playerStat={player2Stat} />
