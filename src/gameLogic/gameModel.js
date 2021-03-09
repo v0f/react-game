@@ -34,9 +34,13 @@ class GameModel {
     const newSquareStatus = this.board2.handleMove(squareIndex);
     if (!newSquareStatus) return; // second click on the same square
     makeSound(squareType[newSquareStatus]);
-    this.nextMove = 'player2';
     this.updateBoard2State([...this.board2.squares]);
-    this.botMakeMove();
+    if (this.board2.allShipsDestroyed()) {
+      this.state = 'win';
+    } else {
+      this.nextMove = 'player2';
+      this.botMakeMove();
+    }
   }
 
   playerBotMakeMove = () => {
@@ -45,15 +49,20 @@ class GameModel {
   };
 
   botMakeMove = () => {
-    const id = setTimeout(() => { // slow down the bot decisions
+    const botMove = () => {
       const squareIndex = this.makeBotDecision(this.board1.squares);
       const newSquareStatus = this.board1.handleMove(squareIndex);
       makeSound(squareType[newSquareStatus]);
-      this.nextMove = 'player';
       this.updateBoard1State([...this.board1.squares]);
-      if (this.autoplay) this.playerBotMakeMove();
-    }, this.botsTimeout);
-    this.botTimeoutId = id;
+      if (this.board1.allShipsDestroyed()) {
+        this.state = 'win';
+      } else {
+        this.nextMove = 'player';
+        if (this.autoplay) this.playerBotMakeMove();
+      }
+    };
+    // slow down bot decisions
+    this.botTimeoutId = setTimeout(botMove, this.botsTimeout);
   }
 }
 
