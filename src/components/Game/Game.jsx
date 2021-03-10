@@ -7,6 +7,7 @@ import Board from '../Board/Board';
 import BoardInfo from '../BoardInfo/BoardInfo';
 import BoardSizeSlider from '../Slider/BoardSizeSlider';
 import BotSpeedSlider from '../Slider/BotSpeedSlider';
+import VolumeControl from '../VolumeControl/VolumeControl';
 import FirstMoveChoise from '../FirstMoveChoise/FirstMoveChoise';
 import GameModel from '../../gameLogic/gameModel';
 import BoardModel from '../../gameLogic/boardModel';
@@ -83,16 +84,23 @@ function Game() {
       <Button {...buttonsStyle} endIcon={<AutorenewIcon />} onClick={autoplayButtonClick}>
         autoplay
       </Button>
-      <Paper style={{ marginTop: '50px', padding: '25px' }} elevation={0}>
-        <Grid container direction="column" spacing={3}>
-          <Grid item xs>
-            <BoardSizeSlider onChange={handleBoardSizeChange} />
+      <Paper style={{ marginTop: '50px', padding: '30px' }} elevation={0}>
+        <Grid container spacing={0}>
+          <Grid item container direction="column" spacing={3} xs={6}>
+            <Grid item>
+              <BoardSizeSlider onChange={handleBoardSizeChange} />
+            </Grid>
+            <Grid item>
+              <BotSpeedSlider onChange={handleBotSpeedChange} />
+            </Grid>
+            <Grid item>
+              <FirstMoveChoise onChange={handleFirstMoveChange} />
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <BotSpeedSlider onChange={handleBotSpeedChange} />
-          </Grid>
-          <Grid item xs>
-            <FirstMoveChoise onChange={handleFirstMoveChange} />
+          <Grid item container spacing={3} xs>
+            <Grid item xs>
+              <VolumeControl />
+            </Grid>
           </Grid>
         </Grid>
       </Paper>

@@ -2,21 +2,33 @@ import music from '../assets/music.mp3';
 import shot from '../assets/shot.mp3';
 import miss from '../assets/miss.mp3';
 
-const gameMusic = new Audio(music);
-gameMusic.loop = true;
-gameMusic.volume = 0.5;
+class Sound {
+  constructor() {
+    this.sfx = {
+      shot: new Audio(shot),
+      miss: new Audio(miss),
+    };
+    this.gameMusic = new Audio(music);
+    this.gameMusic.loop = true;
+    this.gameMusic.volume = 0.5;
+    this.sfxVolume = 0.5;
+    this.sfxOn = true;
+    this.musicOn = false;
+  }
 
-const sfx = {
-  shot: new Audio(shot),
-  miss: new Audio(miss),
-};
+  makeSound = (sound) => {
+    if (!this.sfxOn) return;
+    this.sfx[sound].currentTime = 0;
+    this.sfx[sound].volume = this.sfxVolume;
+    this.sfx[sound].play();
+  }
 
-const makeSound = (sound) => {
-  sfx[sound].currentTime = 0;
-  sfx[sound].play();
-};
+  playMusic = () => {
+    if (!this.musicOn) return;
+    this.gameMusic.play();
+  }
+}
 
-export {
-  gameMusic,
-  makeSound,
-};
+const sound = new Sound();
+
+export default sound;

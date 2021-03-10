@@ -1,6 +1,6 @@
 import { squareType, PLAYERS } from './constants';
 import BoardModel from './boardModel';
-import { makeSound } from '../utils/sounds';
+import sound from '../utils/sounds';
 
 class GameModel {
   constructor(boardSize, botsTimeout, firstMove = PLAYERS.player1, autoplay = false) {
@@ -38,7 +38,7 @@ class GameModel {
   playerMakeMove = (squareIndex) => {
     const newSquareStatus = this.board2.handleMove(squareIndex);
     if (!newSquareStatus) return; // second click on the same square
-    makeSound(squareType[newSquareStatus]);
+    sound.makeSound(squareType[newSquareStatus]);
     this.updateBoard2State([...this.board2.squares]);
     if (this.board2.allShipsDestroyed()) {
       this.state = 'win';
@@ -57,7 +57,7 @@ class GameModel {
     const botMove = () => {
       const squareIndex = this.makeBotDecision(this.board1.squares);
       const newSquareStatus = this.board1.handleMove(squareIndex);
-      makeSound(squareType[newSquareStatus]);
+      sound.makeSound(squareType[newSquareStatus]);
       this.updateBoard1State([...this.board1.squares]);
       if (this.board1.allShipsDestroyed()) {
         this.state = 'win';
