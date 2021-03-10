@@ -1,0 +1,11 @@
+.Board {
+  display: grid;
+  grid-template-columns: repeat(var(--size), 1fr);
+  grid-template-rows: repeat(var(--size), 1fr);
+  background: #fff;
+  width: 350px;
+  height: 350px;
+  box-shadow: 0px 0px 15px #666;
+  margin: 5px;
+  flex-shrink: 0;
+}

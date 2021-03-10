@@ -1,0 +1,15 @@
+.Game {
+  margin: 0 auto;
+  width: fit-content;
+  flex: 1;
+}
+
+.Game .boards {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.Game .newGameButton {
+  margin: 20px 10px;
+}

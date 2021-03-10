@@ -1,0 +1,57 @@
+.Square {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  user-select: none;
+}
+
+.player1 .Square.ship {
+  background: linear-gradient(45deg, royalblue, skyblue 100px);
+}
+
+.Square.shot {
+  background: linear-gradient(45deg, red, transparent 100px);
+  color: darkred;
+  animation-duration: 0.5s;
+  animation-name: shot;
+  animation-timing-function: ease-in-out;
+}
+
+.Square.miss {
+  background: #e5eff9;
+  color: #000;
+  animation-duration: 0.5s;
+  animation-name: miss;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes shot {
+  0% {
+    box-shadow: 0 0 0px red;
+  }
+
+  50% {
+    box-shadow: 0 0 50px red;
+  }
+
+  100% {
+    box-shadow: 0 0 0px red;
+  }
+}
+
+@keyframes miss {
+  0% {
+    box-shadow: 0 0 0px #8abdf1;
+  }
+
+  50% {
+    box-shadow: 0 0 50px #8abdf1;
+  }
+
+  100% {
+    box-shadow: 0 0 0px #8abdf1;
+  }
+}
